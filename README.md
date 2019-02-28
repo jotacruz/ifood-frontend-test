@@ -1,4 +1,4 @@
-####### SPOTIFOOD
+###### SPOTIFOOD
 #### INSTALLATION
 
 I've create a server to retrieve data from Spotify
@@ -9,7 +9,7 @@ yarn install
 yarn start
 ```
 
-##(Let this terminal open)
+## (Let this terminal open)
 
 Open a new terminal in root project folder:
 ```
