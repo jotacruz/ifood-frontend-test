@@ -1,15 +1,14 @@
 body{ background: #001f3f; padding: 25px 0 0; }
 body .mainContainer{ width: 1100px; max-width: 90%; margin: auto; }
-body h1{ color: #fff; text-align: center; font-size: 2.2rem; line-height: 1; }
 body .top-gap{ margin: 5px 0 0; }
 body .wrap-feedback{ min-height: 50px; overflow: hidden; }
 body .wrap-feedback > *{ margin: 0; }
 body .wrap-feedback.active{ min-height: 50px; }
-body .jumbotron{ background: #cd2328; border-radius: 5px; padding: 2rem 1rem !important; }
-.card-columns{ padding: .75rem 0 0; }
-.card-columns .card.playlist-row .card-header{ color: #FFF; border-bottom-color: #FFF; margin-bottom: 1rem; }
-.card-columns .card.playlist-row{ padding: .75rem; background: #212529; }
-.card-columns .card.playlist-row .playlist-img{ max-width: 100%; margin: 0 auto 1.5rem; display: block; border-radius: 50%; }
+.wrap-cards{ padding: .75rem 0 0; display: flex; flex-wrap: wrap; }
+.wrap-cards .card.playlist-row{ padding: .75rem; background: #212529; width: calc((100% - 60px) / 4); margin: 0 20px 20px 0;}
+.wrap-cards .card.playlist-row:nth-child(4n){ margin:  0 0 20px }
+.wrap-cards .card.playlist-row .card-header{ color: #FFF; border-bottom-color: #FFF; margin-bottom: 1rem; font-size: 1rem; padding: .75rem 0; }
+.wrap-cards .card.playlist-row .playlist-img{ max-width: 100%; margin: 0 auto 1.5rem; display: block; border-radius: 50%; }
 body .disabled{ opacity: 0; transition: opacity .25s; }
 body h2{ color: #FFF; margin-top: .5rem; font-size: 1.7rem; }
 body form label{ font-size: .85rem; color: #FFF; }
@@ -20,6 +19,24 @@ body table .colName{ width: 40%; }
 body table .colImage{ width: 30%; }
 body table .colButton{ width: 30%; }
 
-@media(max-width: 800px){
+body .jumbotron{ display: flex; justify-content: center; background: #cd2328; border-radius: 5px; padding: 2rem 1rem !important; }
+body .jumbotron h1{  color: #fff; text-align: center; font-size: 2.2rem; line-height: 1; }
+
+@media (max-width: 1100px){
+    .wrap-cards .card.playlist-row{ width: calc((100% - 40px) / 3);}
+    .wrap-cards .card.playlist-row:nth-child(3n){ margin: 0 0 20px; }
+    .wrap-cards .card.playlist-row:nth-child(4n){ margin: 0 20px 20px 0; }
+}
+
+@media(max-width: 700px){
     body .inputSearch{ width: 100%;}
+    .wrap-cards .card.playlist-row{ width: calc((100% - 20px) / 2);}
+    .wrap-cards .card.playlist-row:nth-child(3n){ margin: 0 20px 20px 0; }
+    .wrap-cards .card.playlist-row:nth-child(2n){ margin: 0 0 20px; }
+}
+
+@media(max-width: 480px){
+    .wrap-cards .card.playlist-row{ width: 100%;}
+    .wrap-cards .card.playlist-row,
+    .wrap-cards .card.playlist-row:nth-child(3n){ margin: 0 0 20px; }
 }

@@ -13,7 +13,6 @@ export function loadPlaylists(params = {}, search = false){
             });
             
             const data = response.data;
-            console.log(data);
             data.search = search;
             data.params = params;
 

@@ -64,6 +64,7 @@ class Filter extends Component {
 
     resetFilter = () => {
         document.getElementById("form-filter").reset();
+        this.props.loadPlaylists({}, true);
     }
 
     render(){

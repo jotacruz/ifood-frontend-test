@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Card, Button, CardColumns } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 
 import defaultPlaylistLogo from '../../assets/images/spotify.jpg'
 import speakerImage from '../../assets/images/speaker.png';
@@ -16,9 +16,7 @@ export default class PlaylistCard extends React.Component{
     }
 
     onSearchChange(e){
-        this.setState({
-            inputSearch: e.target.value
-        })
+        this.setState({ ...this.state, inputSearch: e.target.value})
     }
 
     renderList(){
@@ -40,9 +38,9 @@ export default class PlaylistCard extends React.Component{
         return(
             <React.Fragment>
                 <input type='text' placeholder="Encontre a playlist pelo nome..." onChange={this.onSearchChange} className="inputSearch" value={this.state.input} />
-                <CardColumns>
+                <div className="wrap-cards">
                     {this.renderList()}
-                </CardColumns>
+                </div>
             </React.Fragment>
         )
     }
