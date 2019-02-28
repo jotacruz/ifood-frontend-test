@@ -10,6 +10,8 @@ import { connect } from 'react-redux';
 import {  loadPlaylists } from '../../store/actions/playlistsActions';
 import FilterOptions from './filterOptions';
 
+import filterImage from '../../assets/images/filter.png';
+
 class Filter extends Component {
     constructor(props){
         super(props);
@@ -45,12 +47,14 @@ class Filter extends Component {
             if (field.type !== 'submit' && field.value !== ""){
                 if (field.name === 'offset'){
                     params[field.name] = Number.parseInt(field.value, 10) - 1
+                } else if (field.name === 'timestamp'){
+                    params[field.name] = field.value + ":00";
                 } else {
                     params[field.name] = field.value
                 }
             }
         }
-       
+
         this.props.loadPlaylists(params, true);
     }
 
@@ -58,21 +62,30 @@ class Filter extends Component {
         this.setState({ ...this.state, showFilter: !this.state.showFilter })
     }
 
+    resetFilter = () => {
+        document.getElementById("form-filter").reset();
+    }
+
     render(){
 
-        const { filterOptions, showFilter, filterError } = this.state
+        const { filterOptions, showFilter, filterError } = this.state;
+
+        const { isSearching, isLoading } = this.props;
 
         return(
             <React.Fragment>
-                <Button className="marginBottomGap" onClick={this.toggleFilter}>Filtro</Button>
+                <Button variant="secondary" className="marginBottomGap" onClick={this.toggleFilter}>Filtro <img src={filterImage} alt="Filtro" /></Button>
+                { showFilter && (
+                    <Button variant="warning" className="marginFilterGap" onClick={this.resetFilter}>Limpar Filtro</Button>
+                )}                    
                 { showFilter && !filterError && (
-                    <Form onSubmit={this.handleSubmit}>
+                    <Form onSubmit={this.handleSubmit} id="form-filter">
                         <Form.Row>
                             <FilterOptions filterOptions={filterOptions} />
                             <Col sm="4">
                                 <Button variant="primary" type="submit" block
-                                    disabled={this.props.isSearching || this.props.isLoading}>
-                                    {this.props.isSearching ? "Pesquisando..." : "Pesquisar" }
+                                    disabled={isSearching || isLoading}>
+                                    {isSearching ? "Pesquisando..." : "Pesquisar" }
                                 </Button>            
                             </Col>
                         </Form.Row>

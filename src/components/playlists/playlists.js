@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { loadPlaylists } from '../../store/actions/playlistsActions';
-import PlaylistTable from './playlistTable';
+import PlaylistGroup from './playlistGroup';
 import PlaylistFeedback from './playlistFeedback';
 
 class List extends Component {
@@ -25,7 +25,7 @@ class List extends Component {
         return(
             <React.Fragment>
                 <PlaylistFeedback callBackMessage={this.props.callBackMessage} isLoading={this.props.isLoading} callBackStatus={this.props.callBackStatus} />
-                <PlaylistTable playlistTitle={this.props.playlistTitle} playlists={this.props.playlists} />
+                <PlaylistGroup playlistTitle={this.props.playlistTitle} playlists={this.props.playlists} />
             </React.Fragment>
         )
     }

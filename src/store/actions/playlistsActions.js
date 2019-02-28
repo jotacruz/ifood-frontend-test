@@ -13,13 +13,23 @@ export function loadPlaylists(params = {}, search = false){
             });
             
             const data = response.data;
+            console.log(data);
             data.search = search;
             data.params = params;
 
             if (data.status === 200)
                 dispatch(loadPlaylistsSuccess(data));
-            else 
+            else {
+                let errorMessage;
+                if(data.status === 400)
+                    errorMessage = "A busca não retornou nenhum resultado";
+                else    
+                    errorMessage = "Falha ao realizar conexão com o servidor";    
+
+                data.message = errorMessage;
+
                 dispatch(loadPlaylistsError(data));
+            }
         } catch (e){
             const error = {message: "Falha ao realizar conexão com o servidor", code: 500}
             dispatch(loadPlaylistsError(error));

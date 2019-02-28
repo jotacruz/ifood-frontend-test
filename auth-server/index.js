@@ -50,7 +50,6 @@ const retrievePlaylist = async (params = {}, token = "") => {
 
     const query = querystring.stringify(params);
     const urlApi = `https://api.spotify.com/v1/browse/featured-playlists?${query}`;
-    console.log(urlApi);
 
     try {
         const response = await axios.get(urlApi, headers);
@@ -59,17 +58,11 @@ const retrievePlaylist = async (params = {}, token = "") => {
 
         return response.data;
     } catch(error){
-        
-        console.log(error.response);
 
-        switch(error.response.status){
-            case 401:
-                return await retrievePlaylist(params, "") 
-            case 400:
-                return { "status": 400, "message": "A busca não retornou nenhum resultado"}    
-            default:
-                return { "status": 500 , "message": "Não foi possível carregar a lista no momento"}    
-        }
+        if (error.response.status === 401)
+            return await retrievePlaylist(params, "")
+        else 
+            return { "status": error.response.status}        
     }
 }
 
