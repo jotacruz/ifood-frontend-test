@@ -1,7 +1,7 @@
 # SPOTIFOOD
 ## INSTALLATION
 
-I've create a server to retrieve data from Spotify
+I've create a server to retrieve data from Spotify.\
 Open a terminal: (yarn or npm commands)
 ```
 cd auth-server
